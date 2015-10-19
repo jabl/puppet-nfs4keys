@@ -1,0 +1,14 @@
+{
+  "name": "jabl-nfs4keys",
+  "version": "0.1.0",
+  "author": "Janne Blomqvist",
+  "summary": "Make sure that Linux kernel key caches are big enough for NFSv4",
+  "license": "GPL-2.0+",
+  "source": "https://github.com/jabl/puppet-nfs4keys",
+  "project_page": "https://github.com/jabl/puppet-nfs4keys",
+  "issues_url": "https://github.com/jabl/puppet-nfs4keys/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
