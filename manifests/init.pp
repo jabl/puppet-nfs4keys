@@ -24,15 +24,20 @@
 #
 class nfs4keys {
 
-  file {'/tmp/check_key_cache.sh':
-    source => 'puppet:///modules/nfs4keys/check_key_cache.sh',
-    owner  => root,
-    group  => root,
-    mode   => 0755
-  }
+  case $::osfamily {
+    'Debian': {
+      file {'/etc/sysctl.d/66-keycache-nfs4.conf':
+        source => 'puppet:///modules/nfs4keys/66-keycache_nfs4.conf',
+        owner  => root,
+        group  => root,
+        mode   => 0644
+      }
 
-  exec {'/tmp/check_key_cache.sh':
-    subscribe => File['/tmp/check_key_cache.sh']
+      exec {'/sbin/sysctl --system --pattern kernel.keys.root_max':
+        subscribe   => File['/etc/sysctl.d/66-keycache-nfs4.conf'],
+        refreshonly => true
+      }
+    }
   }
 
   # Also make sure that keyutils is installed, otherwise renewing
