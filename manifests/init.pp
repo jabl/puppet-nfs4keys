@@ -27,7 +27,7 @@ class nfs4keys {
   case $::osfamily {
     'Debian': {
       file {'/etc/sysctl.d/66-keycache-nfs4.conf':
-        source => 'puppet:///modules/nfs4keys/66-keycache_nfs4.conf',
+        source => 'puppet:///modules/nfs4keys/66-keycache-nfs4.conf',
         owner  => root,
         group  => root,
         mode   => 0644
