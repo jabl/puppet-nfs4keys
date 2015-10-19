@@ -17,8 +17,9 @@ using NFSv4.
 
 ## What nfs4keys affects
 
-Creates a file /etc/sysctl.d/66-keycache-nfs4.conf executes sysctl
-whenever it changes.
+Creates a file /etc/sysctl.d/66-keycache-nfs4.conf, and executes
+sysctl whenever it changes. Ensures that the keyutils package is
+installed.
 
 ## Usage
 
