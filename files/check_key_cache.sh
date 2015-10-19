@@ -15,5 +15,5 @@ fi
 read maxbytes < /proc/sys/kernel/keys/root_maxbytes
 if [[ $maxbytes -lt 25000000 ]]
 then
-    echo 25000000 > /proc/sys/kernel/keys/root_maxbyte
+    echo 25000000 > /proc/sys/kernel/keys/root_maxbytes
 fi
