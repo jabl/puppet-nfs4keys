@@ -28,7 +28,7 @@ class nfs4keys {
     source => 'puppet:///modules/nfs4keys/check_key_cache.sh',
     owner  => root,
     group  => root,
-    mode   => 0644
+    mode   => 0755
   }
 
   exec {'/tmp/check_key_cache.sh':
