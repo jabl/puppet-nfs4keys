@@ -1,8 +1,7 @@
 # == Class: nfs4keys
 #
-# Makes sure that root kernel key cache is at least as large as in
-# recent upstream kernels. Uses a shell script as apparently having
-# puppet/ruby reading /proc entries is not reliable.
+# Makes sure that root kernel key cache is as large as in
+# recent upstream kernels.
 #
 # === Parameters
 #

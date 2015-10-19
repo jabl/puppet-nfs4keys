@@ -17,7 +17,8 @@ using NFSv4.
 
 ## What nfs4keys affects
 
-* Creates and executes a shell script /tmp/check_key_cache.sh.
+Creates a file /etc/sysctl.d/66-keycache-nfs4.conf executes sysctl
+whenever it changes.
 
 ## Usage
 
