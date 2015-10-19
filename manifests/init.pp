@@ -1,41 +1,42 @@
 # == Class: nfs4keys
 #
-# Full description of class nfs4keys here.
+# Makes sure that root kernel key cache is at least as large as in
+# recent upstream kernels. Uses a shell script as apparently having
+# puppet/ruby reading /proc entries is not reliable.
 #
 # === Parameters
 #
-# Document parameters here.
-#
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# No parameters.
 #
 # === Variables
 #
-# Here you should define a list of variables that this module would require.
-#
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if
-#   it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should be avoided in favor of class parameters as
-#   of Puppet 2.6.)
-#
 # === Examples
 #
-#  class { 'nfs4keys':
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#  }
+#  class { 'nfs4keys': }
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Janne Blomqvist <janne.blomqvist@aalto.fi>
 #
 # === Copyright
 #
-# Copyright 2015 Your name here, unless otherwise noted.
+# Copyright 2015 Janne Blomqvist
 #
 class nfs4keys {
 
+  file {'/tmp/check_key_cache.sh':
+    source => 'puppet:///modules/nfs4keys/check_key_cache.sh',
+    owner  => root,
+    group  => root,
+    mode   => 0644
+  }
+
+  exec {'/tmp/check_key_cache.sh':
+    subscribe => File['/tmp/check_key_cache.sh']
+  }
+
+  # Also make sure that keyutils is installed, otherwise renewing
+  # expired keys doesn't work properly.
+  ensure_packages ('keyutils')
 
 }
